@@ -21,6 +21,16 @@ A system that automatically updates a local repository when changes are pushed t
 
 ---
 
+
+### Phase 3: Automated Git Pull
+
+* Integrated webhook with system actions
+* Used Python subprocess to execute `git pull`
+* Enabled automatic repository updates on trigger
+
+**Result:** Fully automated deployment trigger system
+
+
 ## How to Run
 
 ```bash
