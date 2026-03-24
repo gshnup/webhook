@@ -1,44 +1,119 @@
 # Auto Deploy Webhook 🚀
+# Auto Deploy Webhook 🚀
 
 ## Overview
 
-A system that automatically updates a local repository when changes are pushed to GitHub using webhooks.
+Auto Deploy Webhook is a real-time automation system that updates a local repository whenever changes are pushed to GitHub.
+
+It uses webhooks to trigger a Flask server, which then executes a `git pull` to keep the system in sync automatically.
 
 ---
 
-## Phase 1: Understanding Webhooks
+## Features
 
-* Learned how GitHub sends POST requests on code changes
-* Understood event-driven automation
+* Real-time GitHub webhook integration
+* Automated `git pull` execution
+* Flask-based webhook receiver
+* Event-driven architecture
+* Local-to-public tunneling using ngrok
 
 ---
 
-## Phase 2: Webhook Receiver
+## Tech Stack
 
-* Built a Flask server to receive webhook requests
+* Python
+* Flask
+* Git
+* ngrok
+
+---
+
+## Architecture
+
+```text
+GitHub Push
+     ↓
+Webhook (POST request)
+     ↓
+Flask Server (/webhook)
+     ↓
+subprocess → git pull
+     ↓
+Local repository updated
+```
+
+---
+
+## Project Phases
+
+### Phase 1: Webhook Fundamentals
+
+* Understood event-driven triggers
+* Learned GitHub webhook behavior
+
+### Phase 2: Webhook Receiver
+
+* Built Flask server
 * Created `/webhook` endpoint
-* Verified using curl
+* Tested using curl
+
+### Phase 3: Automation
+
+* Integrated subprocess
+* Executed `git pull` on trigger
+
+### Phase 4: Real Integration
+
+* Exposed local server using ngrok
+* Connected GitHub webhook
+* Achieved real-time auto deployment
 
 ---
-
-
-### Phase 3: Automated Git Pull
-
-* Integrated webhook with system actions
-* Used Python subprocess to execute `git pull`
-* Enabled automatic repository updates on trigger
-
-**Result:** Fully automated deployment trigger system
-
 
 ## How to Run
+
+### Start Flask Server
 
 ```bash
 python app.py
 ```
 
-Test:
+### Start ngrok
 
 ```bash
-curl -X POST http://localhost:5000/webhook
+ngrok http 5000
 ```
+
+### Configure GitHub Webhook
+
+* URL: `https://<ngrok-url>/webhook`
+* Method: POST
+
+---
+
+## Example Output
+
+```text
+Webhook received! Pulling latest changes...
+Already up to date.
+```
+
+---
+
+## Key Learnings
+
+* Webhook-based event systems
+* HTTP request handling
+* Automation using subprocess
+* Real-time deployment concepts
+
+---
+
+## Future Improvements
+
+* Add webhook security (secret validation)
+* Dockerize the service
+* Add logging system
+* Deploy on cloud server
+
+---
